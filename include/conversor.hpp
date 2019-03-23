@@ -17,7 +17,6 @@ using namespace std;
 struct Conversor_ {
 
 	STL_geometry OBJ2STL(OBJ_geometry& _obj_geometry);
-
 };
 
 typedef struct Conversor_ Conversor;
