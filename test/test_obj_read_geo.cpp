@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	}
 	string filename = argv[1];
 
-	obj_geometry obj_1;
+	OBJ_geometry obj_1;
 	obj_1.read_geo(filename);
 
 	return 0;

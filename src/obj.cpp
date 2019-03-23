@@ -1,7 +1,7 @@
 
 #include "obj.hpp"
 
-void obj_geometry::read_geo(const string& filename)
+void OBJ_geometry::read_geo(const string& filename)
 {
 	nvert = 0;
 
@@ -90,6 +90,6 @@ void obj_geometry::read_geo(const string& filename)
 	fio.close();
 }
 
-obj_geometry::~obj_geometry_(void)
+OBJ_geometry::~OBJ_geometry_(void)
 {
 }

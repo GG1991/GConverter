@@ -66,7 +66,7 @@ struct Face_ {
 
 typedef struct Face_ Face;
 
-struct obj_geometry_ {
+struct OBJ_geometry_ {
 
 	int nvert;
 	vector<Vertex> vertices;
@@ -84,10 +84,11 @@ struct obj_geometry_ {
 	{
 		faces.push_back(_face);
 	};
-	~obj_geometry_(void);
+
+	~OBJ_geometry_(void);
 };
 
-typedef struct obj_geometry_ obj_geometry;
+typedef struct OBJ_geometry_ OBJ_geometry;
 
 
 #endif

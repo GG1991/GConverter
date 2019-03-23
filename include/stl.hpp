@@ -5,21 +5,22 @@
 #include <iostream>
 #include <string.h>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
-struct stl_tri_ {
+struct STL_triangle_ {
 
 	double v[9];
 	double n[3];
 
-	stl_tri_()
+	STL_triangle_()
 	{
 		memset(v, 0.0, 9 * sizeof(double));
 		memset(n, 0.0, 3 * sizeof(double));
 	}
 
-	stl_tri_(const double _v[9], const double _n[3])
+	STL_triangle_(const double _v[9], const double _n[3])
 	{
 		memcpy(v, _v, 9 * sizeof(double));
 		memcpy(n, _n, 3 * sizeof(double));
@@ -28,6 +29,15 @@ struct stl_tri_ {
 	void write_ascii(fstream& _fio);
 };
 
-typedef struct stl_tri_ stl_tri;
+typedef struct STL_triangle_ STL_triangle;
+
+
+struct STL_geometry_ {
+
+	vector<STL_triangle> triangles;
+
+};
+
+typedef struct STL_geometry_ STL_geometry;
 
 #endif

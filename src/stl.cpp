@@ -1,7 +1,7 @@
 
 #include "stl.hpp"
 
-void stl_tri::write_ascii(fstream& _fio)
+void STL_triangle::write_ascii(fstream& _fio)
 {
 	_fio << scientific << uppercase;
 	_fio << "facet normal";  
