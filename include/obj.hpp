@@ -13,6 +13,19 @@
 
 using namespace std;
 
+struct Vertex_ {
+
+	double coord[3];
+
+	Vertex_(const double _coord[3])
+	{
+		memcpy(coord, _coord, 3 * sizeof(double));
+	};
+
+};
+
+typedef struct Vertex_ Vertex;
+
 struct Face_ {
 
 	vector<int> v;
@@ -56,11 +69,17 @@ typedef struct Face_ Face;
 struct obj_geometry_ {
 
 	int nvert;
-	double *coord = nullptr;
+	vector<Vertex> vertices;
 	int nfaces;
 	vector<Face> faces;
 
 	void read_geo(const string& filename);
+
+	void add_vertex(Vertex& _vertex)
+	{
+		vertices.push_back(_vertex);
+	};
+
 	void add_face(Face& _face)
 	{
 		faces.push_back(_face);

@@ -17,22 +17,6 @@ void obj_geometry::read_geo(const string& filename)
 
 	cout << "Reading Vertices" << endl;
 
-	while (std::getline(fio, line))
-	{
-		std::istringstream iss(line);
-		string etype;
-		iss >> etype;
-		if (etype == "v") {
-			nvert++;
-		}
-	} 
-
-	fio.clear();
-	fio.seekg(0, ios::beg);
-
-	cout << "Nvert : " << nvert << endl;
-	coord = (double *)malloc(3 * nvert * sizeof(double));
-		
 	cout << "Vertices : " << endl;
 	int n = 0;
 	while (std::getline(fio, line))
@@ -40,33 +24,22 @@ void obj_geometry::read_geo(const string& filename)
 		std::istringstream iss(line);
 		string etype;
 		iss >> etype;
+		double coord[3];
 
 		if (etype == "v") {
 			for (int i = 0; i < 3; ++i) {
-				iss >> coord[3 * n + i];
-				cout << " " << coord[3 * n + i];
+				iss >> coord[i];
+				cout << " " << coord[i];
 			}
+			Vertex vertex(coord);
+			this->add_vertex(vertex);
 			cout << endl;
 			n++;
 		}
 	}
 
-	fio.clear();
-	fio.seekg(0, ios::beg);
+	cout << "NVertex : " << this->vertices.size() << endl;
 
-
-	cout << "Reading Faces" << endl;
-	nfaces = 0;
-
-	while (std::getline(fio, line))
-	{
-		std::istringstream iss(line);
-		string ftype;
-		iss >> ftype;
-		if (ftype == "f") nfaces++;
-	} 
-
-	cout << "Nfaces : " << nfaces << endl;
 
 	fio.clear();
 	fio.seekg(0, ios::beg);
@@ -112,11 +85,11 @@ void obj_geometry::read_geo(const string& filename)
 			cout << endl;
 		}
 	}
+	cout << "Nfaces : " << this->faces.size() << endl;
 
 	fio.close();
 }
 
 obj_geometry::~obj_geometry_(void)
 {
-	free(coord);
 }
