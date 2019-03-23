@@ -24,3 +24,15 @@ void STL_geometry::add_triangle(STL_triangle _stl_triangle)
 {
 	triangles.push_back(_stl_triangle);
 }
+
+void STL_geometry::write_ascii(const string& filename)
+{
+	fstream fio;
+	fio.open(filename, ios::out); 
+	fio << "solid " << filename.substr(0, filename.size() - 4) << endl;  
+	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
+		it->write_ascii(fio);
+	}
+	fio << "endsolid " << filename.substr(0, filename.size() - 4) << endl;  
+	fio.close(); 
+}

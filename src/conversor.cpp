@@ -44,10 +44,9 @@ STL_geometry Conversor::OBJ2STL(OBJ_geometry& _obj_geometry)
 
 			STL_triangle stl_triangle (stl_v, stl_n);
 			stl_geometry.add_triangle(stl_triangle);
-
 		}
-		
 	}
+	cout << "Triangles added : " << stl_geometry.triangles.size() << endl;
 
 	return stl_geometry;
 }
