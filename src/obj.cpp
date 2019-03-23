@@ -1,11 +1,11 @@
 
 #include "obj.hpp"
 
-obj_vertices::obj_vertices_(const string& filename)
+void obj_geometry::read_geo(const string& filename)
 {
 	nvert = 0;
 
-	cout << "Obj Vertices constructor :" << endl;
+	cout << "Reading Obj geometry :" << endl;
 
 	fstream fio;
 	string line;
@@ -15,13 +15,13 @@ obj_vertices::obj_vertices_(const string& filename)
 		cout << "File : " << filename << " couldn't be opened" << endl;
 	}
 
+	cout << "Reading Vertices" << endl;
+
 	while (std::getline(fio, line))
 	{
 		std::istringstream iss(line);
 		string etype;
-
 		iss >> etype;
-
 		if (etype == "v") {
 			nvert++;
 		}
@@ -39,7 +39,6 @@ obj_vertices::obj_vertices_(const string& filename)
 	{
 		std::istringstream iss(line);
 		string etype;
-
 		iss >> etype;
 
 		if (etype == "v") {
@@ -52,10 +51,47 @@ obj_vertices::obj_vertices_(const string& filename)
 		}
 	}
 
-	fio.close(); 
+	fio.clear();
+	fio.seekg(0, ios::beg);
+
+
+	cout << "Reading Faces" << endl;
+	nfaces = 0;
+
+	while (std::getline(fio, line))
+	{
+		std::istringstream iss(line);
+		string ftype;
+		iss >> ftype;
+		if (ftype == "f") nfaces++;
+	} 
+
+	cout << "Nfaces : " << nfaces << endl;
+
+	fio.clear();
+	fio.seekg(0, ios::beg);
+
+	while (std::getline(fio, line))
+	{
+		std::istringstream iss(line);
+		string ftype, a, b;
+		iss >> ftype;
+
+		if (ftype == "f") {
+			while (getline(iss, a, ' ')) {
+				std::istringstream ss(a);
+				while (getline(ss, b, '/')) {
+					cout << b << " ";
+				}
+			}
+			cout << endl;
+		}
+	}
+
+	fio.close();
 }
 
-obj_vertices::~obj_vertices_(void)
+obj_geometry::~obj_geometry_(void)
 {
 	free(coord);
 }

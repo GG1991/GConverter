@@ -14,7 +14,9 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	string filename = argv[1];
-	obj_vertices vertices(filename);
+
+	obj_geometry obj_1;
+	obj_1.read_geo(filename);
 
 	return 0;
 }

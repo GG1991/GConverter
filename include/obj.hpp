@@ -13,16 +13,17 @@
 using namespace std;
 
 
-struct obj_vertices_ {
+struct obj_geometry_ {
 
 	int nvert;
-	double *coord;
+	double *coord = nullptr;
+	int nfaces;
 
-	obj_vertices_(const string& filename);
-	~obj_vertices_(void);
+	void read_geo(const string& filename);
+	~obj_geometry_(void);
 };
 
-typedef struct obj_vertices_ obj_vertices;
+typedef struct obj_geometry_ obj_geometry;
 
 
 struct obj_face_ {
