@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(conversor VERSION 0.1 LANGUAGES CXX)
+project(Obj2STL VERSION 0.1 LANGUAGES CXX)
 
 if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE "Debug")
@@ -11,7 +11,7 @@ include_directories(include ${CMAKE_BINARY_DIR})
 
 file(GLOB SOURCES src/*.cpp)
 
-add_library(conversor ${SOURCES})
+add_library(obj2stl ${SOURCES})
 
 enable_testing()
 add_subdirectory(test)
