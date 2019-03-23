@@ -36,6 +36,8 @@ struct STL_geometry_ {
 
 	vector<STL_triangle> triangles;
 
+	void add_triangle(STL_triangle _stl_triangle);
+
 };
 
 typedef struct STL_geometry_ STL_geometry;

@@ -8,17 +8,14 @@
 #include <sstream>
 #include <cstdlib>
 #include <vector>
-
-#define MAX_NVERT 10
+#include "obj.hpp"
+#include "stl.hpp"
 
 using namespace std;
 
-struct Conversor {
+struct Conversor_ {
 
-
-	STL_geometry OBJ2STL(OBJ_geometry _obj_geometry)
-	{
-	};
+	STL_geometry OBJ2STL(OBJ_geometry& _obj_geometry);
 
 };
 

@@ -19,3 +19,8 @@ void STL_triangle::write_ascii(fstream& _fio)
 	_fio << "    endloop" << endl;  
 	_fio << "endfacet" << endl;  
 }
+
+void STL_geometry::add_triangle(STL_triangle _stl_triangle)
+{
+	triangles.push_back(_stl_triangle);
+}

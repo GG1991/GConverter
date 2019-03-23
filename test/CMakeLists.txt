@@ -5,6 +5,7 @@ set(CMAKE_BUILD_TYPE Debug)
 set(testsources
 	test_stl_tri.cpp
 	test_obj_read_geo.cpp
+	test_conversor_1.cpp
 	)
 
 # Iterate over the list above
@@ -21,4 +22,5 @@ endforeach ()
 # tests individually here.
 
 add_test(NAME test_stl_tri COMMAND test_stl_tri)
-add_test(NAME test_obj_read_geo COMMAND test_obj_read_geo)
+add_test(NAME test_obj_read_geo COMMAND test_obj_read_geo ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_conversor_1 COMMAND test_conversor_1 ${PROJECT_SOURCE_DIR}/geometries/box.obj)
