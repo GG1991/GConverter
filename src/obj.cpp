@@ -71,19 +71,44 @@ void obj_geometry::read_geo(const string& filename)
 	fio.clear();
 	fio.seekg(0, ios::beg);
 
-	while (std::getline(fio, line))
+	while (getline(fio, line))
 	{
 		std::istringstream iss(line);
 		string ftype, a, b;
 		iss >> ftype;
+		Face face;
 
 		if (ftype == "f") {
 			while (getline(iss, a, ' ')) {
+
 				std::istringstream ss(a);
-				while (getline(ss, b, '/')) {
+
+				// parse v
+				if(getline(ss, b, '/')) {
+					if (b != "") {
+						face.add_v(stoi(b));
+						cout << b << " ";
+					}
+				}
+
+				// parse vt (cannot be here)
+				if(getline(ss, b, '/')) {
+					if (b != "") {
+						face.add_vt(stoi(b));
+						cout << b << " ";
+					}
+				}
+
+				// parse vn (cannot be here)
+				if(getline(ss, b, '/')) {
+					face.add_vn(stoi(b));
 					cout << b << " ";
 				}
+
 			}
+
+			face.check();
+			this->add_face(face);
 			cout << endl;
 		}
 	}
