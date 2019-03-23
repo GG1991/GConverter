@@ -4,6 +4,7 @@ set(CMAKE_BUILD_TYPE Debug)
 # The test files I care only (create a list)
 set(testsources
 	test_stl_tri.cpp
+	test_obj_read_geo.cpp
 	)
 
 # Iterate over the list above
@@ -20,3 +21,4 @@ endforeach ()
 # tests individually here.
 
 add_test(NAME test_stl_tri COMMAND test_stl_tri)
+add_test(NAME test_obj_read_geo COMMAND test_obj_read_geo)
