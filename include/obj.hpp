@@ -9,8 +9,6 @@
 #include <cstdlib>
 #include <vector>
 
-#define MAX_NVERT 10
-
 using namespace std;
 
 struct Vertex_ {
