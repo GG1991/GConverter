@@ -5,9 +5,9 @@ STL_geometry Conversor::OBJ2STL(OBJ_geometry& _obj_geometry)
 {
 	STL_geometry stl_geometry;
 
-	for(vector<Face>::iterator it = _obj_geometry.faces.begin(); it != _obj_geometry.faces.end(); ++it) {
+	for(vector<Obj_Face>::iterator it = _obj_geometry.faces.begin(); it != _obj_geometry.faces.end(); ++it) {
 
-		Face face = *it;
+		Obj_Face face = *it;
 
 		for (int i = 0; i < face.v.size() - 2; ++i) {
 

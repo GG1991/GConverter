@@ -31,7 +31,7 @@ void OBJ_geometry::read_geo(const string& filename)
 				iss >> coord[i];
 				cout << " " << coord[i];
 			}
-			Vertex vertex(coord);
+			Obj_Vertex vertex(coord);
 			this->add_vertex(vertex);
 			cout << endl;
 			n++;
@@ -49,7 +49,7 @@ void OBJ_geometry::read_geo(const string& filename)
 		std::istringstream iss(line);
 		string ftype, a, b;
 		iss >> ftype;
-		Face face;
+		Obj_Face face;
 
 		if (ftype == "f") {
 			while (getline(iss, a, ' ')) {

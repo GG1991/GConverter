@@ -11,20 +11,20 @@
 
 using namespace std;
 
-struct Vertex_ {
+struct Obj_Vertex_ {
 
 	double coord[3];
 
-	Vertex_(const double _coord[3])
+	Obj_Vertex_(const double _coord[3])
 	{
 		memcpy(coord, _coord, 3 * sizeof(double));
 	};
 
 };
 
-typedef struct Vertex_ Vertex;
+typedef struct Obj_Vertex_ Obj_Vertex;
 
-struct Face_ {
+struct Obj_Face_ {
 
 	vector<int> v;
 	vector<int> vt;
@@ -48,37 +48,37 @@ struct Face_ {
 	bool check(void)
 	{
 		if (v.size() < 3) {
-			cout << "Face with less than 3 vertices" << endl;
+			cout << "Obj_Face with less than 3 vertices" << endl;
 			return false;
 		}
 		if (vn.size() != 0 && vn.size() != v.size()) {
-			cout << "Face with different vn than v" << endl;
+			cout << "Obj_Face with different vn than v" << endl;
 			return false;
 		}
 		if (vt.size() != 0 && vt.size() != v.size()) {
-			cout << "Face with different vt than v" << endl;
+			cout << "Obj_Face with different vt than v" << endl;
 			return false;
 		}
 	};
 };
 
-typedef struct Face_ Face;
+typedef struct Obj_Face_ Obj_Face;
 
 struct OBJ_geometry_ {
 
 	int nvert;
-	vector<Vertex> vertices;
+	vector<Obj_Vertex> vertices;
 	int nfaces;
-	vector<Face> faces;
+	vector<Obj_Face> faces;
 
 	void read_geo(const string& filename);
 
-	void add_vertex(Vertex& _vertex)
+	void add_vertex(Obj_Vertex& _vertex)
 	{
 		vertices.push_back(_vertex);
 	};
 
-	void add_face(Face& _face)
+	void add_face(Obj_Face& _face)
 	{
 		faces.push_back(_face);
 	};
