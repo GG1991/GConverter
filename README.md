@@ -30,3 +30,9 @@ The `-V` option if to see the output tests.
 ## Examples
 
 In the `test` folder there are different examples that uses the all the functionalities of `GConverter` library.
+
+For the `geometries/poligon.obj`
+
+![polygon-obj](pics/polygon-obj.png "Polygon in OBJ")
+
+![polygon-stl](pics/polygon-stl.png "Polygon in STL")
