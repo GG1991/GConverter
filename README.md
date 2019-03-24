@@ -31,8 +31,36 @@ The `-V` option if to see the output tests.
 
 In the `test` folder there are different examples that uses the all the functionalities of `GConverter` library.
 
-For the `geometries/poligon.obj`
+### Conversion from OBJ to STL
+
+The geometry is `geometries/poligon.obj`
 
 ![polygon-obj](pics/polygon-obj.png "Polygon in OBJ")
 
+From the `build` directory after compiling do:
+
+    ../test_conversor ../geometries/poligon.obj
+
+The ASCII and the binary STL should be generated : `output-ascii.stl` and `output-binary.stl`. Both should be equivalent:
+
 ![polygon-stl](pics/polygon-stl.png "Polygon in STL")
+
+### Translation, Rotation and Scale operations
+
+These operations are done only with the OBJ class objects.
+The tests `test_obj_translate.cpp`, `test_obj_rotate.cpp` and `test_obj_scale.cpp` are prepared to show how to do these operations.
+
+From the `build` directory after compiling do:
+
+    ../test_obj_translate ../geometries/box.obj
+
+![box-translate](pics/box-translate.png "Box translated")
+
+    ../test_obj_rotate ../geometries/box.obj
+
+![box-rotate](pics/box-rotate.png "Box rotated")
+
+    ../test_obj_scale ../geometries/box.obj
+
+![box-scale](pics/box-scale.png "Box scale")
+

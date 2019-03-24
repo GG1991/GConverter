@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		cout << " " << centroid[i];
 	cout << endl;
 
-	obj_1.write_ascii("test_rotate_out.obj");
+	obj_1.write_ascii("test_rotate.obj");
 
 	return 0;
 }

@@ -1,4 +1,5 @@
 
+#include "conversor.hpp"
 #include "obj.hpp"
 #include <iostream>
 #include <string.h>
@@ -35,6 +36,8 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < 3; ++i)
 		cout << " " << centroid[i];
 	cout << endl;
+
+	obj_1.write_ascii("test_translate.obj");
 
 	return 0;
 }

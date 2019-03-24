@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 		cout << " " << centroid[i];
 	cout << endl;
 
-	obj_1.write_ascii("test_scale_out.obj");
+	obj_1.write_ascii("test_scale.obj");
 
 	return 0;
 }

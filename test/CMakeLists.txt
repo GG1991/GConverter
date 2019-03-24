@@ -3,7 +3,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 # The test files I care only (create a list)
 set(testsources
-	test_conversor_1.cpp
+	test_conversor.cpp
 	test_obj_read_geo.cpp
 	test_obj_calc_centroid.cpp
 	test_obj_translate.cpp
@@ -30,12 +30,12 @@ endforeach ()
 # As some tests will require commands and could be executed in loops we add the
 # tests individually here.
 
-add_test(NAME test_conversor_1 COMMAND test_conversor_1 ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_conversor COMMAND test_conversor ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_obj_read_geo COMMAND test_obj_read_geo ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_obj_calc_centroid COMMAND test_calc_centroid ${PROJECT_SOURCE_DIR}/geometries/box.obj)
-add_test(NAME test_obj_translate COMMAND test_translate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
-add_test(NAME test_obj_rotate COMMAND test_rotate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
-add_test(NAME test_obj_scale COMMAND test_scale ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_obj_translate COMMAND test_obj_translate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_obj_rotate COMMAND test_obj_rotate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_obj_scale COMMAND test_obj_scale ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_stl_triangle_ascii COMMAND test_stl_triangle_ascii)
 add_test(NAME test_stl_triangle_binary COMMAND test_stl_triangle_binary)
 add_test(NAME test_stl_calc_surface COMMAND test_stl_calc_surface ${PROJECT_SOURCE_DIR}/geometries/box.obj)
