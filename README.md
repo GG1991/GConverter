@@ -48,6 +48,7 @@ The ASCII and the binary STL should be generated : `output-ascii.stl` and `outpu
 ### Translation, Rotation and Scale operations
 
 These operations are done only with the OBJ class objects.
+The files can be print in STL applying the conversor after the operations.
 The tests `test_obj_translate.cpp`, `test_obj_rotate.cpp` and `test_obj_scale.cpp` are prepared to show how to do these operations.
 
 From the `build` directory after compiling do:
@@ -63,4 +64,39 @@ From the `build` directory after compiling do:
     ../test_obj_scale ../geometries/box.obj
 
 ![box-scale](pics/box-scale.png "Box scale")
+
+### Surface, Volume and Interior Point Check
+
+These operations are done directly with the STL class objects.
+
+From the `build` directory after compiling do:
+
+**Surface**
+
+    ./test/test_stl_calc_surface ../geometries/box.obj
+
+Output:
+
+    Surface : 6
+
+**Volume**
+
+    ./test/test_stl_calc_surface ../geometries/box.obj
+
+Output:
+
+    Volume : 1
+
+**Interior Point Check**
+
+    ./test/test_stl_is_point_inside ../geometries/box.obj
+
+Output:
+
+    The point :  1 0 0 is outside.
+    The point :  0 0 0 is inside.
+    The point :  0.5 0 0 is outside.
+    The point :  0.499 0 0 is inside.
+    The point :  0.499 -0.499 -0.499 is inside.
+    The point :  0.499 -0.499 -0.5001 is outside.
 
