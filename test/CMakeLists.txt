@@ -10,6 +10,9 @@ set(testsources
 	test_translate.cpp
 	test_rotate.cpp
 	test_scale.cpp
+	test_stl_calc_surface.cpp
+	test_stl_calc_volume.cpp
+	test_stl_is_point_inside.cpp
 	)
 
 # Iterate over the list above
@@ -32,4 +35,7 @@ add_test(NAME test_calc_centroid COMMAND test_calc_centroid ${PROJECT_SOURCE_DIR
 add_test(NAME test_translate COMMAND test_translate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_rotate COMMAND test_rotate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_scale COMMAND test_scale ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_stl_calc_surface COMMAND test_stl_calc_surface ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_stl_calc_volume COMMAND test_stl_calc_volume ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_stl_is_point_inside COMMAND test_stl_is_point_inside ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 

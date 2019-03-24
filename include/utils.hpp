@@ -25,4 +25,14 @@ inline void mvp(const T A[size][size], const T vector[size], T result[size])
 	}
 }
 
+template<typename T, int size>
+inline double norm(const T vector[size])
+{
+	double norm = 0;
+	for (int i = 0; i < size; ++i) {
+		norm += vector[i] * vector[i];
+	}
+	return ((double)norm);
+}
+
 #endif
