@@ -87,7 +87,26 @@ double STL_geometry::calc_volume(void)
 {
 	double volume = 0.0;
 
-	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
+	double centroid[3];
+	calc_centroid(centroid);
+
+	for(vector<STL_triangle>::iterator it = triangles.begin(); it != triangles.end(); ++it) {
+
+		double v1[3] = { it->v[0 * 3 + 0], it->v[0 * 3 + 1], it->v[0 * 3 + 2] };
+		double v2[3] = { it->v[1 * 3 + 0], it->v[1 * 3 + 1], it->v[1 * 3 + 2] };
+		double v3[3] = { it->v[2 * 3 + 0], it->v[2 * 3 + 1], it->v[2 * 3 + 2] };
+
+		for (int d = 0; d < 3; ++d) {
+			v1[d] -= centroid[d];
+			v2[d] -= centroid[d];
+			v3[d] -= centroid[d];
+		}
+
+		volume += (1. / 6.) * ( \
+			 v1[0] * (v2[1] * v3[2] - v2[2] * v3[1]) + \
+			 v1[1] * (v2[2] * v3[0] - v2[0] * v3[2]) + \
+			 v1[2] * (v2[0] * v3[1] - v2[1] * v3[0])   \
+			 );
 	}
 
 	return volume;
@@ -96,6 +115,35 @@ double STL_geometry::calc_volume(void)
 
 bool STL_geometry::is_point_inside(const double point[3])
 {
-	bool is_inside;
+	bool is_inside = true;
+
+	double sign_0 = 0;
+
+	for(vector<STL_triangle>::iterator it = triangles.begin(); it != triangles.end(); ++it) {
+
+		double centroid_triangle[3] = { 0.0 };
+
+		for (int i = 0; i < 3; ++i) {
+			for (int d = 0; d < 3; ++d) {
+				centroid_triangle[d] += it->v[i * 3 + d];
+			}
+		}
+		for (int d = 0; d < 3; ++d)
+			centroid_triangle[d] /= 3;
+
+		double AB[3];
+		for (int d = 0; d < 3; ++d)
+			AB[d] = (point[d] - centroid_triangle[d]);
+
+		double *normal = it->n;
+		double sign = dot_product<double,3>(normal, AB);
+
+		if (it == triangles.begin())
+			sign_0 = sign;
+		else
+			is_inside &= (sign_0 * sign > 0);
+
+	}
+
 	return is_inside;
 }

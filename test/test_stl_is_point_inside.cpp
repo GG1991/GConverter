@@ -23,12 +23,59 @@ int main(int argc, char *argv[])
 
 	stl_geometry.write_ascii("output.stl");
 
+	bool is_point_inside;
+
 	const double point_1[3] = { 1.0, 0.0, 0.0 };
-	bool is_point_inside = stl_geometry.is_point_inside(point_1);
+	is_point_inside = stl_geometry.is_point_inside(point_1);
 
 	cout << "The point : ";
 	for (int i = 0; i < 3; ++i)
 		cout << " " << point_1[i];
+
+	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
+
+	const double point_2[3] = { 0.0, 0.0, 0.0 };
+	is_point_inside = stl_geometry.is_point_inside(point_2);
+
+	cout << "The point : ";
+	for (int i = 0; i < 3; ++i)
+		cout << " " << point_2[i];
+
+	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
+
+	const double point_3[3] = { 0.5, 0.0, 0.0 };
+	is_point_inside = stl_geometry.is_point_inside(point_3);
+
+	cout << "The point : ";
+	for (int i = 0; i < 3; ++i)
+		cout << " " << point_3[i];
+
+	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
+
+	const double point_4[3] = { 0.499, 0.0, 0.0 };
+	is_point_inside = stl_geometry.is_point_inside(point_4);
+
+	cout << "The point : ";
+	for (int i = 0; i < 3; ++i)
+		cout << " " << point_4[i];
+
+	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
+
+	const double point_5[3] = { 0.499, -0.499, -0.499 };
+	is_point_inside = stl_geometry.is_point_inside(point_5);
+
+	cout << "The point : ";
+	for (int i = 0; i < 3; ++i)
+		cout << " " << point_5[i];
+
+	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
+
+	const double point_6[3] = { 0.499, -0.499, -0.5001 };
+	is_point_inside = stl_geometry.is_point_inside(point_6);
+
+	cout << "The point : ";
+	for (int i = 0; i < 3; ++i)
+		cout << " " << point_6[i];
 
 	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
 
