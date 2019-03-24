@@ -19,7 +19,7 @@ foreach (testfile ${testsources})
 
 	# Create the executable test_i and link.
 	add_executable(${testname} ${testfile})
-	target_link_libraries(${testname} obj2stl)
+	target_link_libraries(${testname} gconversor)
 endforeach ()
 
 # As some tests will require commands and could be executed in loops we add the

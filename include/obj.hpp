@@ -52,9 +52,6 @@ struct OBJ_geometry_ {
 	int translate(const double vector[3]);
 	int scale(const double factor);
 	int rotate(const double angle, const int axis);
-	double surface(void);
-	double volume(void);
-	bool is_point_inside(const double p[3]);
 
 	~OBJ_geometry_(void);
 };

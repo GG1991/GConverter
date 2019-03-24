@@ -38,6 +38,10 @@ struct STL_geometry_ {
 
 	void add_triangle(STL_triangle _stl_triangle);
 	void write_ascii(const string& filename);
+
+	double surface(void);
+	double volume(void);
+	bool is_point_inside(const double p[3]);
 };
 
 typedef struct STL_geometry_ STL_geometry;
