@@ -29,6 +29,7 @@ class STL_triangle {
 		}
 
 		void write_ascii(fstream& _fio);
+		void write_binary(fstream& _fio);
 };
 
 class STL_geometry {
@@ -38,6 +39,7 @@ class STL_geometry {
 
 		void add_triangle(STL_triangle _stl_triangle);
 		void write_ascii(const string& filename);
+		void write_binary(const string& filename);
 
 		void calc_centroid(double centroid[3]);
 		double calc_surface(void);

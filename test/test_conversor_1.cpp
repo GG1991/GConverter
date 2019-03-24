@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
 	Conversor conversor;
 	STL_geometry stl_geometry = conversor.OBJ2STL(obj);
 
-	stl_geometry.write_ascii("output.stl");
+	stl_geometry.write_ascii("output-ascii.stl");
+	stl_geometry.write_binary("output-binary.stl");
 
 	return 0;
 }

@@ -20,6 +20,24 @@ void STL_triangle::write_ascii(fstream& _fio)
 	_fio << "endfacet" << endl;  
 }
 
+void STL_triangle::write_binary(fstream& _fio)
+{
+	for (int d = 0; d < 3; ++d) {
+		float a = (float)n[d];
+		_fio.write((char*)(&a), sizeof(float));
+	}
+
+	for (int i = 0; i < 3; ++i) {
+		for (int d = 0; d < 3; ++d) {
+			float a = (float)v[3 * i + d];
+			_fio.write((char*)(&a), sizeof(float));
+		}
+	}
+
+	uint16_t a = 0;
+	_fio.write((char*)&a, sizeof(uint16_t));
+}
+
 void STL_geometry::add_triangle(STL_triangle _stl_triangle)
 {
 	triangles.push_back(_stl_triangle);
@@ -35,6 +53,25 @@ void STL_geometry::write_ascii(const string& filename)
 	}
 	fio << "endsolid " << filename.substr(0, filename.size() - 4) << endl;  
 	fio.close(); 
+}
+
+void STL_geometry::write_binary(const string& filename)
+{
+	fstream fio;
+	fio.open(filename, ios::out | ios::binary);
+
+	char head[80];
+	string header_info = "GConvert-output";
+	strncpy(head, header_info.c_str(), sizeof(head) - 1);
+	fio.write(head, sizeof(head));
+
+	uint32_t Ntriangles = triangles.size();
+	fio.write((char*)(&Ntriangles), sizeof(uint32_t));
+
+	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
+		it->write_binary(fio);
+	}
+	fio.close();
 }
 
 double STL_geometry::calc_surface(void)
