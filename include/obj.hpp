@@ -44,7 +44,9 @@ struct OBJ_geometry_ {
 	void read_geo(const string& filename);
 	void add_vertex(Obj_Vertex& _vertex);
 	void add_face(Obj_Face& _face);
+
 	void print(void);
+	void write_ascii(const string& filename);
 
 	void calc_centroid(double _centroid[3]);
 	int translate(const double vector[3]);

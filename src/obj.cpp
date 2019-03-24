@@ -80,7 +80,7 @@ void OBJ_geometry::print(void)
 	cout << "Nfaces : " << this->faces.size() << endl;
 	cout << "NVertex : " << this->vertices.size() << endl;
 	cout << "Vertices : " << endl;
-	for(auto it = vertices.begin(); it != vertices.end(); ++it) {
+	for(vector<Obj_Vertex>::iterator it = vertices.begin(); it != vertices.end(); ++it) {
 		for (int d = 0; d < 3; ++d)
 			cout << " " << it->coord[d];
 		cout << endl;
@@ -89,11 +89,33 @@ void OBJ_geometry::print(void)
 	for(vector<Obj_Face>::iterator it = faces.begin(); it != faces.end(); ++it) {
 
 		for (int i = 0; i < it->v.size(); ++i) {
-
 			cout << " " << it->v[i];
 		}
 		cout << endl;
 	}
+}
+
+
+void OBJ_geometry::write_ascii(const string& filename)
+{
+	fstream fio;
+	fio.open(filename, ios::out); 
+	fio << endl;
+	for(vector<Obj_Vertex>::iterator it = vertices.begin(); it != vertices.end(); ++it) {
+		fio << "v";
+		for (int d = 0; d < 3; ++d)
+			fio << " " << it->coord[d];
+		fio << endl;
+	}
+	fio << endl;
+	for(vector<Obj_Face>::iterator it = faces.begin(); it != faces.end(); ++it) {
+		fio << "f";
+		for (int i = 0; i < it->v.size(); ++i) {
+			fio << " " << it->v[i];
+		}
+		fio << endl;
+	}
+	fio.close(); 
 }
 
 

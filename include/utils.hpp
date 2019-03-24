@@ -15,7 +15,7 @@ inline void cross_product(const T v1[3], const T v2[3], T v3[3])
 }
 
 template<typename T,int size>
-inline void mvp(const T A[size][size], const T vector[size], T result[3])
+inline void mvp(const T A[size][size], const T vector[size], T result[size])
 {
 	for (int i = 0; i < size; ++i) {
 		result[i] = 0;
