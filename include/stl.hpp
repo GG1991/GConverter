@@ -9,41 +9,39 @@
 
 using namespace std;
 
-struct STL_triangle_ {
+class STL_triangle {
 
-	double v[9];
-	double n[3];
+	public:
+		double v[9];
+		double n[3];
 
-	STL_triangle_()
-	{
-		memset(v, 0.0, 9 * sizeof(double));
-		memset(n, 0.0, 3 * sizeof(double));
-	}
+		STL_triangle()
+		{
+			memset(v, 0.0, 9 * sizeof(double));
+			memset(n, 0.0, 3 * sizeof(double));
+		}
 
-	STL_triangle_(const double _v[9], const double _n[3])
-	{
-		memcpy(v, _v, 9 * sizeof(double));
-		memcpy(n, _n, 3 * sizeof(double));
-	}
+		STL_triangle(const double _v[9], const double _n[3])
+		{
+			memcpy(v, _v, 9 * sizeof(double));
+			memcpy(n, _n, 3 * sizeof(double));
+		}
 
-	void write_ascii(fstream& _fio);
+		void write_ascii(fstream& _fio);
 };
 
-typedef struct STL_triangle_ STL_triangle;
+class STL_geometry {
 
+	public:
+		vector<STL_triangle> triangles;
 
-struct STL_geometry_ {
+		void add_triangle(STL_triangle _stl_triangle);
+		void write_ascii(const string& filename);
 
-	vector<STL_triangle> triangles;
-
-	void add_triangle(STL_triangle _stl_triangle);
-	void write_ascii(const string& filename);
-
-	double surface(void);
-	double volume(void);
-	bool is_point_inside(const double p[3]);
+		double surface(void);
+		double volume(void);
+		bool is_point_inside(const double p[3]);
 };
 
-typedef struct STL_geometry_ STL_geometry;
 
 #endif

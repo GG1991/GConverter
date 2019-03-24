@@ -217,7 +217,7 @@ void OBJ_geometry::add_face(Obj_Face& _face)
 	faces.push_back(_face);
 };
 
-Obj_Vertex::Obj_Vertex_(const double _coord[3])
+Obj_Vertex::Obj_Vertex(const double _coord[3])
 {
 	memcpy(coord, _coord, 3 * sizeof(double));
 };
@@ -237,6 +237,6 @@ void Obj_Face::add_vn(int _vn)
 	vn.push_back(_vn);
 };
 
-OBJ_geometry::~OBJ_geometry_(void)
+OBJ_geometry::~OBJ_geometry(void)
 {
 }
