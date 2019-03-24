@@ -1,6 +1,6 @@
 
-#ifndef CONVERSOR_HPP
-#define CONVERSOR_HPP
+#ifndef GCONVERSOR_HPP
+#define GCONVERSOR_HPP
 
 #include <iostream>
 #include <string.h>
@@ -14,11 +14,10 @@
 
 using namespace std;
 
-struct Conversor_ {
+class GConversor {
 
-	STL_geometry OBJ2STL(OBJ_geometry& _obj_geometry);
+	public:
+		STL_geometry OBJ2STL(OBJ_geometry& _obj_geometry);
 };
-
-typedef struct Conversor_ Conversor;
 
 #endif

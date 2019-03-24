@@ -32,7 +32,7 @@ endforeach ()
 
 add_test(NAME test_conversor COMMAND test_conversor ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_obj_read_geo COMMAND test_obj_read_geo ${PROJECT_SOURCE_DIR}/geometries/box.obj)
-add_test(NAME test_obj_calc_centroid COMMAND test_calc_centroid ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_obj_calc_centroid COMMAND test_obj_calc_centroid ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_obj_translate COMMAND test_obj_translate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_obj_rotate COMMAND test_obj_rotate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_obj_scale COMMAND test_obj_scale ${PROJECT_SOURCE_DIR}/geometries/box.obj)

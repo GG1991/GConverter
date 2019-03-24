@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <fstream>
-#include "conversor.hpp"
+#include "gconversor.hpp"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	OBJ_geometry obj;
 	obj.read_geo(filename);
 
-	Conversor conversor;
+	GConversor conversor;
 	STL_geometry stl_geometry = conversor.OBJ2STL(obj);
 
 	stl_geometry.write_ascii("output-ascii.stl");

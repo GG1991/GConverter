@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <fstream>
-#include "conversor.hpp"
+#include "gconversor.hpp"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	const double translate[3] = { 1.0, 0.25, -0.9 };
 	obj.translate(translate);
 
-	Conversor conversor;
+	GConversor conversor;
 	STL_geometry stl_geometry = conversor.OBJ2STL(obj);
 
 	stl_geometry.write_ascii("output.stl");

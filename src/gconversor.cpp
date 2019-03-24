@@ -1,7 +1,7 @@
 
-#include "conversor.hpp"
+#include "gconversor.hpp"
 
-STL_geometry Conversor::OBJ2STL(OBJ_geometry& _obj_geometry)
+STL_geometry GConversor::OBJ2STL(OBJ_geometry& _obj_geometry)
 {
 	STL_geometry stl_geometry;
 
