@@ -6,6 +6,7 @@ set(testsources
 	test_stl_tri.cpp
 	test_obj_read_geo.cpp
 	test_conversor_1.cpp
+	test_calc_centroid.cpp
 	)
 
 # Iterate over the list above
@@ -24,3 +25,5 @@ endforeach ()
 add_test(NAME test_stl_tri COMMAND test_stl_tri)
 add_test(NAME test_obj_read_geo COMMAND test_obj_read_geo ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_conversor_1 COMMAND test_conversor_1 ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_calc_centroid COMMAND test_calc_centroid ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+

@@ -11,9 +11,6 @@ void OBJ_geometry::read_geo(const string& filename)
 		cout << "File : " << filename << " couldn't be opened" << endl;
 	}
 
-	cout << "Reading Vertices" << endl;
-
-	cout << "Vertices : " << endl;
 	int n = 0;
 	while (std::getline(fio, line))
 	{
@@ -25,16 +22,13 @@ void OBJ_geometry::read_geo(const string& filename)
 		if (etype == "v") {
 			for (int i = 0; i < 3; ++i) {
 				iss >> coord[i];
-				cout << " " << coord[i];
 			}
 			Obj_Vertex vertex(coord);
 			this->add_vertex(vertex);
-			cout << endl;
 			n++;
 		}
 	}
 
-	cout << "NVertex : " << this->vertices.size() << endl;
 
 
 	fio.clear();
@@ -56,7 +50,6 @@ void OBJ_geometry::read_geo(const string& filename)
 				if(getline(ss, b, '/')) {
 					if (b != "") {
 						face.add_v(stoi(b));
-						cout << b << " ";
 					}
 				}
 
@@ -64,36 +57,51 @@ void OBJ_geometry::read_geo(const string& filename)
 				if(getline(ss, b, '/')) {
 					if (b != "") {
 						face.add_vt(stoi(b));
-						cout << b << " ";
 					}
 				}
 
 				// parse vn (cannot be here)
 				if(getline(ss, b, '/')) {
 					face.add_vn(stoi(b));
-					cout << b << " ";
 				}
 
 			}
 
 			face.check();
 			this->add_face(face);
-			cout << endl;
 		}
 	}
-	cout << "Nfaces : " << this->faces.size() << endl;
 
 	fio.close();
+}
+
+void OBJ_geometry::print(void)
+{
+	cout << "Nfaces : " << this->faces.size() << endl;
+	cout << "NVertex : " << this->vertices.size() << endl;
+	cout << "Vertices : " << endl;
+	for(auto it = vertices.begin(); it != vertices.end(); ++it) {
+		for (int d = 0; d < 3; ++d)
+			cout << " " << it->coord[d];
+		cout << endl;
+	}
+	cout << "Faces : " << endl;
+	for(vector<Obj_Face>::iterator it = faces.begin(); it != faces.end(); ++it) {
+
+		for (int i = 0; i < it->v.size(); ++i) {
+
+			cout << " " << it->v[i];
+		}
+		cout << endl;
+	}
 }
 
 
 int OBJ_geometry::translate(const double vector[3])
 {
 	for(auto it = vertices.begin(); it != vertices.end(); ++it) {
-
 		for (int d = 0; d < 3; ++d)
 			it->coord[d] += vector[d];
-
 	}
 	return 0;
 }
@@ -131,6 +139,21 @@ int OBJ_geometry::rotate(const double angle, const int axis)
 		memcpy(it->coord, vector_rotated, 3 * sizeof(double));
 	}
 	return 0;
+}
+
+
+void OBJ_geometry::calc_centroid(double _centroid[3])
+{
+	/* This is an easy way to get an internal point of the figure,
+	 * for simple geometries works
+	 */
+	double centroid[3] = { 0.0 };
+	for(auto it = vertices.begin(); it != vertices.end(); ++it) {
+		for (int d = 0; d < 3; ++d)
+			centroid[d] += it->coord[d];
+	}
+	for (int d = 0; d < 3; ++d)
+		_centroid[d] = centroid[d] / vertices.size();
 }
 
 

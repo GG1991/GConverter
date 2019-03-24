@@ -17,7 +17,13 @@ int main(int argc, char *argv[])
 
 	OBJ_geometry obj_1;
 	obj_1.read_geo(filename);
-	obj_1.print();
+
+	double centroid[3];
+	obj_1.calc_centroid(centroid);
+	cout << "Centroid :";
+	for (int i = 0; i < 3; ++i)
+		cout << " " << centroid[i];
+	cout << endl;
 
 	return 0;
 }
