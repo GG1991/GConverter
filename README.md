@@ -1,6 +1,6 @@
 # GConverter
 
-This is a CAD library that allows operate with 3D geometries.
+CAD library to operate with 3D geometries.
 
 ## Properties
 
