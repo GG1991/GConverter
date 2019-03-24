@@ -67,10 +67,29 @@ double STL_geometry::calc_surface(void)
 	return surface;
 }
 
+void STL_geometry::calc_centroid(double _centroid[3])
+{
+	/* This is an easy way to get an internal point of the figure,
+	 * for simple geometries works
+	 */
+	double centroid[3] = { 0.0 };
+	for(auto it = triangles.begin(); it != triangles.end(); ++it) {
+		for (int n = 0; n < 3; ++n)
+			for (int d = 0; d < 3; ++d)
+				centroid[d] += it->v[n * 3 + d];
+	}
+	for (int d = 0; d < 3; ++d)
+		_centroid[d] = centroid[d] / (3 * triangles.size());
+}
+
 
 double STL_geometry::calc_volume(void)
 {
-	double volume;
+	double volume = 0.0;
+
+	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
+	}
+
 	return volume;
 }
 

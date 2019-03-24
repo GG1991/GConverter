@@ -39,6 +39,7 @@ class STL_geometry {
 		void add_triangle(STL_triangle _stl_triangle);
 		void write_ascii(const string& filename);
 
+		void calc_centroid(double centroid[3]);
 		double calc_surface(void);
 		double calc_volume(void);
 		bool is_point_inside(const double point[3]);
