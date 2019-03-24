@@ -9,6 +9,7 @@ set(testsources
 	test_calc_centroid.cpp
 	test_translate.cpp
 	test_rotate.cpp
+	test_scale.cpp
 	)
 
 # Iterate over the list above
@@ -30,4 +31,5 @@ add_test(NAME test_conversor_1 COMMAND test_conversor_1 ${PROJECT_SOURCE_DIR}/ge
 add_test(NAME test_calc_centroid COMMAND test_calc_centroid ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_translate COMMAND test_translate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 add_test(NAME test_rotate COMMAND test_rotate ${PROJECT_SOURCE_DIR}/geometries/box.obj)
+add_test(NAME test_scale COMMAND test_scale ${PROJECT_SOURCE_DIR}/geometries/box.obj)
 

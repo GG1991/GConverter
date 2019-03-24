@@ -163,6 +163,18 @@ int OBJ_geometry::rotate(const double angle, const int axis)
 	return 0;
 }
 
+int OBJ_geometry::scale(const double factor)
+{
+	double centroid[3];
+	calc_centroid(centroid);
+
+	for(vector<Obj_Vertex>::iterator it = vertices.begin(); it != vertices.end(); ++it) {
+		for (int d = 0; d < 3; ++d)
+			it->coord[d] = factor * (it->coord[d] - centroid[d]);
+	}
+	return 0;
+}
+
 
 void OBJ_geometry::calc_centroid(double _centroid[3])
 {
