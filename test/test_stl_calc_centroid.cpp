@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
 	stl_geometry.write_ascii("output.stl");
 
-	double centroid[3];
+	float centroid[3];
 	stl_geometry.calc_centroid(centroid);
 	cout << "Centroid :";
 	for (int i = 0; i < 3; ++i)

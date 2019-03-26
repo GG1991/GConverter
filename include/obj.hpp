@@ -53,7 +53,6 @@ class OBJ_geometry {
 		int scale(const double factor);
 		int rotate(const double angle, const int axis);
 
-		~OBJ_geometry(void);
 };
 
 #endif

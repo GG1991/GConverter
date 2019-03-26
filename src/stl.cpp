@@ -22,21 +22,14 @@ void STL_triangle::write_ascii(fstream& _fio)
 
 void STL_triangle::write_binary(fstream& _fio)
 {
-	for (int d = 0; d < 3; ++d) {
-		float a = (float)n[d];
-		_fio.write((char*)(&a), sizeof(float));
-	}
-
-	for (int i = 0; i < 3; ++i) {
-		for (int d = 0; d < 3; ++d) {
-			float a = (float)v[3 * i + d];
-			_fio.write((char*)(&a), sizeof(float));
-		}
-	}
+	_fio.write((char*)(this->n), sizeof(this->n));
+	_fio.write((char*)(this->v), sizeof(this->v));
 
 	uint16_t a = 0;
 	_fio.write((char*)&a, sizeof(uint16_t));
 }
+
+
 
 void STL_geometry::add_triangle(STL_triangle _stl_triangle)
 {
@@ -74,42 +67,42 @@ void STL_geometry::write_binary(const string& filename)
 	fio.close();
 }
 
-double STL_geometry::calc_surface(void)
+float STL_geometry::calc_surface(void)
 {
-	double surface = 0.0;
+	float surface = 0.0;
 	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
 
 		/* The surface of a triangle is the module of the cross product 
 		 * of two of its sides represented by a vector divided by 2
 		 */
 
-		double *ptr_v = it->v;
-		const double v1[3] = {
+		float *ptr_v = it->v;
+		const float v1[3] = {
 			ptr_v[1 * 3 + 0] - ptr_v[0 * 3 + 0],
 			ptr_v[1 * 3 + 1] - ptr_v[0 * 3 + 1],
 			ptr_v[1 * 3 + 2] - ptr_v[0 * 3 + 2]
 		};
 
-		const double v2[3] = {
+		const float v2[3] = {
 			ptr_v[2 * 3 + 0] - ptr_v[0 * 3 + 0],
 			ptr_v[2 * 3 + 1] - ptr_v[0 * 3 + 1],
 			ptr_v[2 * 3 + 2] - ptr_v[0 * 3 + 2]
 		};
 
-		double v3[3];
-		cross_product<double>(v1, v2, v3);
-		surface += norm<double,3>(v3) / 2;
+		float v3[3];
+		cross_product<float>(v1, v2, v3);
+		surface += norm<float,3>(v3) / 2;
 
 	}
 	return surface;
 }
 
-void STL_geometry::calc_centroid(double _centroid[3])
+void STL_geometry::calc_centroid(float _centroid[3])
 {
 	/* This is an easy way to get an internal point of the figure,
 	 * for simple geometries works
 	 */
-	double centroid[3] = { 0.0 };
+	float centroid[3] = { 0.0 };
 	for(auto it = triangles.begin(); it != triangles.end(); ++it) {
 		for (int n = 0; n < 3; ++n)
 			for (int d = 0; d < 3; ++d)
@@ -120,18 +113,18 @@ void STL_geometry::calc_centroid(double _centroid[3])
 }
 
 
-double STL_geometry::calc_volume(void)
+float STL_geometry::calc_volume(void)
 {
-	double volume = 0.0;
+	float volume = 0.0;
 
-	double centroid[3];
+	float centroid[3];
 	calc_centroid(centroid);
 
 	for(vector<STL_triangle>::iterator it = triangles.begin(); it != triangles.end(); ++it) {
 
-		double v1[3] = { it->v[0 * 3 + 0], it->v[0 * 3 + 1], it->v[0 * 3 + 2] };
-		double v2[3] = { it->v[1 * 3 + 0], it->v[1 * 3 + 1], it->v[1 * 3 + 2] };
-		double v3[3] = { it->v[2 * 3 + 0], it->v[2 * 3 + 1], it->v[2 * 3 + 2] };
+		float v1[3] = { it->v[0 * 3 + 0], it->v[0 * 3 + 1], it->v[0 * 3 + 2] };
+		float v2[3] = { it->v[1 * 3 + 0], it->v[1 * 3 + 1], it->v[1 * 3 + 2] };
+		float v3[3] = { it->v[2 * 3 + 0], it->v[2 * 3 + 1], it->v[2 * 3 + 2] };
 
 		for (int d = 0; d < 3; ++d) {
 			v1[d] -= centroid[d];
@@ -150,15 +143,15 @@ double STL_geometry::calc_volume(void)
 }
 
 
-bool STL_geometry::is_point_inside(const double point[3])
+bool STL_geometry::is_point_inside(const float point[3])
 {
 	bool is_inside = true;
 
-	double sign_0 = 0;
+	float sign_0 = 0;
 
 	for(vector<STL_triangle>::iterator it = triangles.begin(); it != triangles.end(); ++it) {
 
-		double centroid_triangle[3] = { 0.0 };
+		float centroid_triangle[3] = { 0.0 };
 
 		for (int i = 0; i < 3; ++i) {
 			for (int d = 0; d < 3; ++d) {
@@ -168,12 +161,12 @@ bool STL_geometry::is_point_inside(const double point[3])
 		for (int d = 0; d < 3; ++d)
 			centroid_triangle[d] /= 3;
 
-		double AB[3];
+		float AB[3];
 		for (int d = 0; d < 3; ++d)
 			AB[d] = (point[d] - centroid_triangle[d]);
 
-		double *normal = it->n;
-		double sign = dot_product<double,3>(normal, AB);
+		float *normal = it->n;
+		float sign = dot_product<float,3>(normal, AB);
 
 		if (it == triangles.begin())
 			sign_0 = sign;

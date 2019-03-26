@@ -237,6 +237,3 @@ void Obj_Face::add_vn(int _vn)
 	vn.push_back(_vn);
 };
 
-OBJ_geometry::~OBJ_geometry(void)
-{
-}

@@ -13,19 +13,19 @@ using namespace std;
 class STL_triangle {
 
 	public:
-		double v[9];
-		double n[3];
+		float v[9];
+		float n[3];
 
 		STL_triangle()
 		{
-			memset(v, 0.0, 9 * sizeof(double));
-			memset(n, 0.0, 3 * sizeof(double));
+			memset(v, 0.0, 9 * sizeof(float));
+			memset(n, 0.0, 3 * sizeof(float));
 		}
 
-		STL_triangle(const double _v[9], const double _n[3])
+		STL_triangle(const float _v[9], const float _n[3])
 		{
-			memcpy(v, _v, 9 * sizeof(double));
-			memcpy(n, _n, 3 * sizeof(double));
+			memcpy(v, _v, 9 * sizeof(float));
+			memcpy(n, _n, 3 * sizeof(float));
 		}
 
 		void write_ascii(fstream& _fio);
@@ -41,10 +41,10 @@ class STL_geometry {
 		void write_ascii(const string& filename);
 		void write_binary(const string& filename);
 
-		void calc_centroid(double centroid[3]);
-		double calc_surface(void);
-		double calc_volume(void);
-		bool is_point_inside(const double point[3]);
+		void calc_centroid(float centroid[3]);
+		float calc_surface(void);
+		float calc_volume(void);
+		bool is_point_inside(const float point[3]);
 };
 
 

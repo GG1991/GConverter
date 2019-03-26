@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
 	bool is_point_inside;
 
-	const double point_1[3] = { 1.0, 0.0, 0.0 };
+	const float point_1[3] = { 1.0, 0.0, 0.0 };
 	is_point_inside = stl_geometry.is_point_inside(point_1);
 
 	cout << "The point : ";
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 
 	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
 
-	const double point_2[3] = { 0.0, 0.0, 0.0 };
+	const float point_2[3] = { 0.0, 0.0, 0.0 };
 	is_point_inside = stl_geometry.is_point_inside(point_2);
 
 	cout << "The point : ";
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
 	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
 
-	const double point_3[3] = { 0.5, 0.0, 0.0 };
+	const float point_3[3] = { 0.5, 0.0, 0.0 };
 	is_point_inside = stl_geometry.is_point_inside(point_3);
 
 	cout << "The point : ";
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
 
-	const double point_4[3] = { 0.499, 0.0, 0.0 };
+	const float point_4[3] = { 0.499, 0.0, 0.0 };
 	is_point_inside = stl_geometry.is_point_inside(point_4);
 
 	cout << "The point : ";
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 
 	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
 
-	const double point_5[3] = { 0.499, -0.499, -0.499 };
+	const float point_5[3] = { 0.499, -0.499, -0.499 };
 	is_point_inside = stl_geometry.is_point_inside(point_5);
 
 	cout << "The point : ";
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 
 	cout << ((is_point_inside) ? " is inside." : " is outside.") << endl;
 
-	const double point_6[3] = { 0.499, -0.499, -0.5001 };
+	const float point_6[3] = { 0.499, -0.499, -0.5001 };
 	is_point_inside = stl_geometry.is_point_inside(point_6);
 
 	cout << "The point : ";
