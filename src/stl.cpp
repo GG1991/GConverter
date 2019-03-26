@@ -61,8 +61,8 @@ void STL_geometry::write_binary(const string& filename)
 	uint32_t Ntriangles = triangles.size();
 	fio.write((char*)(&Ntriangles), sizeof(uint32_t));
 
-	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
-		it->write_binary(fio);
+	for(auto &it : triangles) {
+		it.write_binary(fio);
 	}
 	fio.close();
 }
@@ -70,13 +70,13 @@ void STL_geometry::write_binary(const string& filename)
 float STL_geometry::calc_surface(void)
 {
 	float surface = 0.0;
-	for(vector<STL_triangle>::iterator it = this->triangles.begin(); it != this->triangles.end(); ++it) {
+	for(auto &it : triangles) {
 
 		/* The surface of a triangle is the module of the cross product 
 		 * of two of its sides represented by a vector divided by 2
 		 */
 
-		float *ptr_v = it->v;
+		float *ptr_v = it.v;
 		const float v1[3] = {
 			ptr_v[1 * 3 + 0] - ptr_v[0 * 3 + 0],
 			ptr_v[1 * 3 + 1] - ptr_v[0 * 3 + 1],
@@ -103,10 +103,10 @@ void STL_geometry::calc_centroid(float _centroid[3])
 	 * for simple geometries works
 	 */
 	float centroid[3] = { 0.0 };
-	for(auto it = triangles.begin(); it != triangles.end(); ++it) {
+	for(auto &it : triangles) {
 		for (int n = 0; n < 3; ++n)
 			for (int d = 0; d < 3; ++d)
-				centroid[d] += it->v[n * 3 + d];
+				centroid[d] += it.v[n * 3 + d];
 	}
 	for (int d = 0; d < 3; ++d)
 		_centroid[d] = centroid[d] / (3 * triangles.size());
@@ -120,11 +120,11 @@ float STL_geometry::calc_volume(void)
 	float centroid[3];
 	calc_centroid(centroid);
 
-	for(vector<STL_triangle>::iterator it = triangles.begin(); it != triangles.end(); ++it) {
+	for(auto &it : triangles) {
 
-		float v1[3] = { it->v[0 * 3 + 0], it->v[0 * 3 + 1], it->v[0 * 3 + 2] };
-		float v2[3] = { it->v[1 * 3 + 0], it->v[1 * 3 + 1], it->v[1 * 3 + 2] };
-		float v3[3] = { it->v[2 * 3 + 0], it->v[2 * 3 + 1], it->v[2 * 3 + 2] };
+		float v1[3] = { it.v[0 * 3 + 0], it.v[0 * 3 + 1], it.v[0 * 3 + 2] };
+		float v2[3] = { it.v[1 * 3 + 0], it.v[1 * 3 + 1], it.v[1 * 3 + 2] };
+		float v3[3] = { it.v[2 * 3 + 0], it.v[2 * 3 + 1], it.v[2 * 3 + 2] };
 
 		for (int d = 0; d < 3; ++d) {
 			v1[d] -= centroid[d];
