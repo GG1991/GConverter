@@ -10,11 +10,12 @@
 
 using namespace std;
 
-class STL_triangle {
+class __attribute__((packed)) STL_triangle {
 
 	public:
-		float v[9];
 		float n[3];
+		float v[9];
+		uint16_t num = 0;
 
 		STL_triangle()
 		{

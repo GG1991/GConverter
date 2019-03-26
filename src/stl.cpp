@@ -20,15 +20,11 @@ void STL_triangle::write_ascii(fstream& _fio)
 	_fio << "endfacet" << endl;  
 }
 
+
 void STL_triangle::write_binary(fstream& _fio)
 {
-	_fio.write((char*)(this->n), sizeof(this->n));
-	_fio.write((char*)(this->v), sizeof(this->v));
-
-	uint16_t a = 0;
-	_fio.write((char*)&a, sizeof(uint16_t));
+	_fio.write((char*)(this), sizeof(STL_triangle));
 }
-
 
 
 void STL_geometry::add_triangle(STL_triangle _stl_triangle)
@@ -48,6 +44,7 @@ void STL_geometry::write_ascii(const string& filename)
 	fio.close(); 
 }
 
+
 void STL_geometry::write_binary(const string& filename)
 {
 	fstream fio;
@@ -61,9 +58,9 @@ void STL_geometry::write_binary(const string& filename)
 	uint32_t Ntriangles = triangles.size();
 	fio.write((char*)(&Ntriangles), sizeof(uint32_t));
 
-	for(auto &it : triangles) {
+	for(auto &it : triangles)
 		it.write_binary(fio);
-	}
+
 	fio.close();
 }
 
